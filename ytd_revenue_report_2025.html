@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YTD Revenue Report 2025</title>
-    <link rel="icon" type="image/png" sizes="180x180" href="revenue-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="revenue-icon.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -167,8 +165,8 @@
         <div class="header">
             <h1>💰 Revenue Report 2025</h1>
             <p>Year-to-Date Performance Overview</p>
-            <p style="font-size: 0.9em; opacity: 0.9; margin-top: 10px;">Last Updated: November 22, 2025 at 11:00 AM</p>
-            <p style="font-size: 0.7em; opacity: 0.7; margin-top: 8px; font-style: italic;">cron job: 9am, 12pm, 3pm, 6pm, 9pm daily | last ran: november 22, 2025 at 11:00 am</p>
+            <p style="font-size: 0.9em; opacity: 0.9; margin-top: 10px;">Last Updated: November 22, 2025 at 02:00 PM</p>
+            <p style="font-size: 0.7em; opacity: 0.7; margin-top: 8px; font-style: italic;">cron job: 9am, 12pm, 3pm, 6pm, 9pm daily | last ran: november 22, 2025 at 02:00 pm</p>
         </div>
 
         <div class="lifetime-banner">
@@ -301,7 +299,7 @@
             </table>
         </div>
         <div class="footer">
-            <p>Generated on November 22, 2025 at 11:00 AM</p>
+            <p>Generated on November 22, 2025 at 02:00 PM</p>
         </div>
     </div>
     <script>
@@ -345,55 +343,5 @@
             }
         });
     </script>
-
-    <!-- METHODOLOGY SECTION -->
-    <div style="background: white; border-radius: 13px; padding: 30px; margin-top: 30px; box-shadow: 0 9px 22px rgba(0,0,0,0.2);">
-        <h2 style="color: #667eea; margin-bottom: 20px; font-size: 1.8em; border-bottom: 3px solid #667eea; padding-bottom: 10px;">
-            📊 Methodology & Definitions
-        </h2>
-
-        <div style="line-height: 1.8; color: #2c3e50;">
-            <h3 style="color: #764ba2; margin-top: 20px; margin-bottom: 10px;">What is Quickbase Revenue Dashboard?</h3>
-            <p style="margin-bottom: 15px;">
-                The <strong>Quickbase Revenue Dashboard</strong> tracks financial performance by pulling revenue data
-                from Quickbase Project Tracker tables. This dashboard provides year-to-date revenue visibility,
-                project tracking, and financial metrics across the organization.
-            </p>
-
-            <h3 style="color: #764ba2; margin-top: 25px; margin-bottom: 10px;">Key Metrics Explained</h3>
-            <ul style="margin-left: 25px; margin-bottom: 15px;">
-                <li><strong>YTD Revenue:</strong> Year-to-date total revenue from all tracked projects</li>
-                <li><strong>Total Projects:</strong> Count of all projects in the tracking system</li>
-                <li><strong>Revenue by Month:</strong> Monthly breakdown of revenue performance</li>
-                <li><strong>Revenue by Type:</strong> Categorization of revenue by project type or category</li>
-                <li><strong>Project Status:</strong> Active, completed, or pending projects</li>
-            </ul>
-
-            <h3 style="color: #764ba2; margin-top: 25px; margin-bottom: 10px;">Calculation Methods</h3>
-            <ul style="margin-left: 25px; margin-bottom: 15px;">
-                <li><strong>YTD Totals:</strong> Sum of all project revenue from January 1 to current date</li>
-                <li><strong>Monthly Aggregation:</strong> Revenue grouped by project completion or invoice date</li>
-                <li><strong>Average Revenue:</strong> Total revenue divided by number of projects</li>
-                <li><strong>Growth Metrics:</strong> Month-over-month and year-over-year comparisons</li>
-            </ul>
-
-            <h3 style="color: #764ba2; margin-top: 25px; margin-bottom: 10px;">Data Source</h3>
-            <p style="margin-bottom: 15px;">
-                All financial data is pulled directly from Quickbase Project Tracker tables via API.
-                Revenue figures represent actual invoiced or completed project values as recorded in Quickbase.
-            </p>
-
-            <h3 style="color: #764ba2; margin-top: 25px; margin-bottom: 10px;">Update Schedule</h3>
-            <p style="margin-bottom: 15px;">
-                This dashboard is automatically updated hourly from 8am to 8pm via cron job.
-                Data reflects the most recent Quickbase records as of the last update time shown at the top of the dashboard.
-            </p>
-
-            <p style="margin-top: 25px; font-size: 0.9em; color: #666; font-style: italic;">
-                For detailed technical documentation, see <code>PROJECT_TRACKER_INFO.txt</code> and <code>discover_and_pull_revenue.py</code> in the project folder.
-            </p>
-        </div>
-    </div>
-
 </body>
 </html>
