@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTD Revenue Report 2025</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            padding: 15px;
+            min-height: 100vh;
+            font-size: 13px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .lifetime-banner {
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            color: white;
+            padding: 20px 25px;
+            text-align: center;
+            border-bottom: 3px solid #0a5a5e;
+        }
+
+        .lifetime-banner h2 {
+            font-size: 0.85em;
+            margin-bottom: 6px;
+            opacity: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .lifetime-banner .amount {
+            font-size: 1.6em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin: 6px 0;
+        }
+
+        .lifetime-banner .subtitle {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 25px;
+            background: #0f0f0f;
+        }
+        .summary-card {
+            background: #252525;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+        .summary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            border-color: #667eea;
+        }
+        .summary-card h3 {
+            color: #8a9ff5;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+        .summary-card .value {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #e0e0e0;
+            margin: 8px 0;
+        }
+        .chart-section { padding: 25px; background: #1a1a1a; }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 25px;
+        }
+        .table-section { padding: 0 25px 25px 25px; background: #1a1a1a; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #252525;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border: 1px solid #333;
+            font-size: 0.95em;
+        }
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75em;
+        }
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            color: #e0e0e0;
+            font-size: 0.9em;
+        }
+        tbody tr:hover { background: #2a2a2a; }
+        .revenue-cell {
+            font-weight: bold;
+            color: #4ade80;
+            font-size: 1em;
+        }
+        .month-cell {
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+        .total-row {
+            background: #2a2a2a;
+            font-weight: bold;
+            font-size: 1em;
+        }
+        .total-row td {
+            padding: 15px;
+            border-top: 3px solid #667eea;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #0f0f0f;
+            color: #999;
+        }
+        h2 {
+            color: #e0e0e0 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Revenue Report 2025</h1>
+            <p>Year-to-Date Performance Overview</p>
+            <p style="font-size: 0.9em; opacity: 0.9; margin-top: 10px;">Last Updated: November 22, 2025 at 10:00 AM</p>
+            <p style="font-size: 0.7em; opacity: 0.7; margin-top: 8px; font-style: italic;">cron job: 9am, 12pm, 3pm, 6pm, 9pm daily | last ran: november 22, 2025 at 10:00 am</p>
+        </div>
+
+        <div class="lifetime-banner">
+            <h2>🏢 Total Lifetime Company Revenue</h2>
+            <div class="amount">$128,520,863</div>
+            <div class="subtitle">4,255 Total Projects Since Inception</div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <h3>Total Revenue</h3>
+                <div class="value">$5,424,212</div>
+            </div>
+            <div class="summary-card">
+                <h3>Total Projects</h3>
+                <div class="value">191</div>
+            </div>
+            <div class="summary-card">
+                <h3>Average Per Month</h3>
+                <div class="value">$493,110</div>
+            </div>
+            <div class="summary-card">
+                <h3>Average Per Project</h3>
+                <div class="value">$28,399</div>
+            </div>
+        </div>
+        <div class="chart-section">
+            <h2 style="margin-bottom: 20px; color: #333;">Monthly Revenue Trend</h2>
+            <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+        <div class="table-section">
+            <h2 style="margin-bottom: 20px; color: #333;">Monthly Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Revenue</th>
+                        <th>Projects</th>
+                        <th>Average per Project</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td class="month-cell">January 2025</td>
+                        <td class="revenue-cell">$91,997.97</td>
+                        <td>4</td>
+                        <td>$22,999.49</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">February 2025</td>
+                        <td class="revenue-cell">$82,963.64</td>
+                        <td>6</td>
+                        <td>$13,827.27</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">March 2025</td>
+                        <td class="revenue-cell">$199,684.57</td>
+                        <td>27</td>
+                        <td>$7,395.72</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">April 2025</td>
+                        <td class="revenue-cell">$381,941.42</td>
+                        <td>10</td>
+                        <td>$38,194.14</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">May 2025</td>
+                        <td class="revenue-cell">$175,911.46</td>
+                        <td>9</td>
+                        <td>$19,545.72</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">June 2025</td>
+                        <td class="revenue-cell">$554,073.90</td>
+                        <td>18</td>
+                        <td>$30,781.88</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">July 2025</td>
+                        <td class="revenue-cell">$968,464.36</td>
+                        <td>29</td>
+                        <td>$33,395.32</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">August 2025</td>
+                        <td class="revenue-cell">$981,317.28</td>
+                        <td>24</td>
+                        <td>$40,888.22</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">September 2025</td>
+                        <td class="revenue-cell">$990,374.80</td>
+                        <td>32</td>
+                        <td>$30,949.21</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">October 2025</td>
+                        <td class="revenue-cell">$495,174.41</td>
+                        <td>17</td>
+                        <td>$29,127.91</td>
+                    </tr>
+
+                    <tr>
+                        <td class="month-cell">November 2025</td>
+                        <td class="revenue-cell">$502,308.20</td>
+                        <td>15</td>
+                        <td>$33,487.21</td>
+                    </tr>
+
+                    <tr class="total-row">
+                        <td>TOTAL</td>
+                        <td class="revenue-cell">$5,424,212.01</td>
+                        <td>191</td>
+                        <td>$28,399.02</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <p>Generated on November 22, 2025 at 10:00 AM</p>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
+                datasets: [{
+                    label: 'Monthly Revenue',
+                    data: [91997.97, 82963.64, 199684.57, 381941.42, 175911.46, 554073.9, 968464.3599999999, 981317.28, 990374.8000000002, 495174.41, 502308.19999999995],
+                    backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    borderWidth: 2,
+                    borderRadius: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return '$' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
